@@ -5,12 +5,23 @@ import {
   View,
 } from 'react-native';
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require('../assets/images/icon.png')}
+        style={{ width: 30, height: 30 }}
+      />
+    );
+  }
+}
 export default class DataScreen extends React.Component {
   static navigationOptions = {
+    headerTitle: <LogoTitle/>,
     headerStyle: {
       backgroundColor: '#1e8bc3',
     },
-    headerTintColor: '#000000',
+    headerTintColor: '#09233d',
   };
 
   render() {

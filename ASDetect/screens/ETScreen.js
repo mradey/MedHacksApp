@@ -1,14 +1,25 @@
 import React from 'react';
-import {View, Dimensions, StyleSheet, Text} from 'react-native';
+import {View, Dimensions, StyleSheet, Text, Image} from 'react-native';
 import { Camera, Permissions, FaceDetector, Video } from 'expo';
-import { MaterialIcons, Octicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require('../assets/images/icon.png')}
+        style={{ width: 30, height: 30 }}
+      />
+    );
+  }
+}
 export default class ETScreen extends React.Component {
   static navigationOptions = {
+    headerTitle: <LogoTitle/>,
     headerStyle: {
       backgroundColor: '#1e8bc3',
     },
-    headerTintColor: '#000000',
+    headerTintColor: '#09233d',
   };
   state = {
     faces: {},

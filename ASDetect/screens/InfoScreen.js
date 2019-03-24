@@ -3,17 +3,43 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  Button,
+  Image,
 } from 'react-native';
+import { MaterialIcons} from '@expo/vector-icons';
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require('../assets/images/icon.png')}
+        style={{ width: 30, height: 30 }}
+      />
+    );
+  }
+}
 export default class InfoScreen extends React.Component {
-  static navigationOptions = {
-    headerTitle: 'FAQ',
-    headerStyle: {
-      backgroundColor: '#1e8bc3',
-    },
-    headerTintColor: '#000000',
+  static navigationOptions = ({ navigation }) => {
+    const params = navigation.state.params || {};
+
+    return {
+      headerTitle: <LogoTitle/>,
+      headerStyle: {
+        backgroundColor: '#1e8bc3',
+      },
+      headerRight: <MaterialIcons
+      style = {styles.button}
+      name = 'arrow-forward'
+      onPress = {params.etHandler}
+      size = {30}
+      title = 'Continue'
+      accessibilityLabel = 'Continue to next screen'/>,
+      headerTintColor: '#09233d',
+    };
   };
+
+  componentWillMount() {
+    this.props.navigation.setParams({ etHandler: this._etHandler});
+  }
 
   state = {user: ''}
 
@@ -69,13 +95,13 @@ export default class InfoScreen extends React.Component {
           <Text style = {styles.text}><Text style = {{fontWeight: 'bold'}}>Early intervention
            therapy: </Text>Behavioral therapy during the toddler or preschool years can significantly 
            improve cognitive and language skills in young children with ASD.</Text>
-           <Button
-            onPress = {() => this.props.navigation.navigate('ET')}
-            title = 'Continue'
-            style = {{ padding: 10}}/>
         </ScrollView>
     );
   }
+
+  _etHandler = () => {
+    this.props.navigation.navigate('ET')
+  };
 }
 
 const styles = StyleSheet.create({
@@ -95,6 +121,10 @@ const styles = StyleSheet.create({
     fontSize: 22,
     padding: 10,
     fontWeight: 'bold',
+  },
+  button: {
+    padding: 10,
+    color: '#09233d',
   },
   text: {
     fontSize: 20,
