@@ -37,7 +37,7 @@ export default class WelcomeScreen extends React.Component {
         <Text style = {styles.text}>Settings</Text>
         <Button
         onPress = {this._etHandler}
-        title = 'Rachelle'
+        title = 'Eye-Tracking'
         />
       </View>
     );

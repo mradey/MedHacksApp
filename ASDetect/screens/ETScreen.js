@@ -1,40 +1,39 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Camera, Permissions, FaceDetector } from 'expo';
 
-export default class DataScreen extends React.Component {
-  static navigationOptions = {
+export default class ETScreen extends React.Component {
+  state = {
+    faces: {},
+    hasCameraPermission: null,
+    type: Camera.Constants.Type.back,
   };
+
+  async componentWillMount() {
+    const {status} = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({hasCameraPermission:status==='granted'});
+  }
 
   render() {
     return (
-      <View style = {styles.container}>
-        <Text style = {styles.text}>Test</Text>
+      <View style={{flex: 1}}>
+      <Camera
+      style={{flex: 1}}
+      type={'front'}
+      onFacesDetected={this.handleFacesDetected}
+      faceDetectorSettings={{
+          mode: FaceDetector.Constants.Mode.accurate,
+          detectLandmarks: FaceDetector.Constants.Landmarks.all,
+          runClassifications: FaceDetector.Constants.Landmarks.all
+      }}>
+      </Camera>
       </View>
     );
+  
+  }
+  
+  handleFacesDetected = ({ faces }) => {
+    this.setState({ faces });
+    console.log(faces);
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 50,
-    padding: 10,
-  },
-  text: {
-    fontSize: 20,
-    padding: 10,
-  },
-  picker: {
-    padding: 10,
-    width: 150,
-  }
-});

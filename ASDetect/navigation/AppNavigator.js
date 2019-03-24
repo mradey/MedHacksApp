@@ -8,7 +8,7 @@ const MainNavigator = createStackNavigator({
   Welcome: WelcomeScreen,
   Info: InfoScreen,
   Data: DataScreen,
-  ET: ETScreen
+  ET: ETScreen,
 });
 
 export default createAppContainer(MainNavigator);
