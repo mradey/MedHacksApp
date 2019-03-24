@@ -31,19 +31,28 @@ export default class WelcomeScreen extends React.Component {
           <Picker.Item label = 'Clinician' value = 'clinician'/>
         </Picker>
         <Button
-        onPress = {this._buttonHandler}
+        onPress = {this._infoHandler}
         title = 'Continue'
         accessibilityLabel = 'Continue to next screen'/>
         <Text style = {styles.text}>Settings</Text>
+        <Button
+        onPress = {this._etHandler}
+        title = 'Rachelle'
+        />
       </View>
     );
   }
 
-  _buttonHandler = () => {
+  _infoHandler = () => {
     if(this.state.user != 'clinician') {
       this.props.navigation.navigate('Info')
     }
   };
+
+  _etHandler = () => {
+    this.props.navigation.navigate('ET')
+  };
+
 }
 
 
