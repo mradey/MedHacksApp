@@ -8,17 +8,30 @@ import {
 
 export default class InfoScreen extends React.Component {
   static navigationOptions = {
-    headerTitle: 'Information',
+    headerTitle: 'FAQ',
+    headerStyle: {
+      backgroundColor: '#1e8bc3',
+    },
+    headerTintColor: '#000000',
   };
 
   state = {user: ''}
+
   updateUser = (user) => {
     this.setState({ user })
   }
 
+  _renderItem ({item, index}) {
+    return (
+        <View style={styles.slide}>
+            <Text style={styles.title}>{ item.title }</Text>
+        </View>
+    );
+  }
+
   render() {
     const {navigate} = this.props.navigation;
-    return (
+    return ( 
         <ScrollView style = {styles.container} contentContainerStyle={styles.contentContainer}>
           <Text style = {styles.header}>What is Autism Spectrum Disorder?</Text>
           <Text style = {styles.text}>Autism spectrum Disorder (ASD) is a developmental disorder that 
@@ -57,7 +70,7 @@ export default class InfoScreen extends React.Component {
            therapy: </Text>Behavioral therapy during the toddler or preschool years can significantly 
            improve cognitive and language skills in young children with ASD.</Text>
            <Button
-            onPress = {() => this.props.navigation.navigate('Data')}
+            onPress = {() => this.props.navigation.navigate('ET')}
             title = 'Continue'
             style = {{ padding: 10}}/>
         </ScrollView>

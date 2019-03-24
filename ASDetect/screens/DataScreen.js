@@ -7,6 +7,10 @@ import {
 
 export default class DataScreen extends React.Component {
   static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#1e8bc3',
+    },
+    headerTintColor: '#000000',
   };
 
   render() {

@@ -13,6 +13,7 @@ export default class WelcomeScreen extends React.Component {
   };
 
   state = {user: 'parent'}
+
   updateUser = (user) => {
     this.setState({ user })
   }
@@ -34,11 +35,9 @@ export default class WelcomeScreen extends React.Component {
         onPress = {this._infoHandler}
         title = 'Continue'
         accessibilityLabel = 'Continue to next screen'/>
-        <Text style = {styles.text}>Settings</Text>
         <Button
-        onPress = {this._etHandler}
-        title = 'Eye-Tracking'
-        />
+        onPress = {this._settingsHandler}
+        title = 'Settings'/>
       </View>
     );
   }
@@ -46,11 +45,17 @@ export default class WelcomeScreen extends React.Component {
   _infoHandler = () => {
     if(this.state.user != 'clinician') {
       this.props.navigation.navigate('Info')
+    } else {
+      this.props.navigation.navigate('ET')
     }
   };
 
   _etHandler = () => {
     this.props.navigation.navigate('ET')
+  };
+
+  _settingsHandler = () => {
+    this.props.navigation.navigate('Settings')
   };
 
 }
@@ -68,6 +73,7 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 50,
     padding: 10,
+    alignItems: 'center',
   },
   text: {
     fontSize: 20,
